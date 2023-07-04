@@ -11,7 +11,7 @@ export async function getFontFaceDeclarations(options: LoaderOptions, rootContex
   const localFontSrc = options.props.src as LocalFontSrc;
 
   // Parent folder relative to the root context
-  const parentFolder = options.filename.split('/').slice(0, -1).join('/').replace(rootContext, '');
+  const parentFolder = path.relative(rootContext, path.join(options.filename, '..'));
 
   const { validateData } = require('../utils/local-font-utils');
   const { weight, style, variable } = validateData('', options.props);
